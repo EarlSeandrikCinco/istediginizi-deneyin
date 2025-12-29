@@ -42,20 +42,91 @@ sdk install maven 3.9.9
 sdk env install
 ```
 
-### 2. Python Bağımlılıklarını Kur
+### 2. Python Kurulumu
+
+#### Python'un Kurulu Olup Olmadığını Kontrol Et
 
 ```bash
+python3 --version
+# veya
+python --version
+```
+
+Python 3.8 veya üzeri bir sürüm olmalıdır.
+
+#### Python Kurulumu (Eğer yoksa)
+
+**macOS:**
+```bash
+# Homebrew ile
+brew install python3
+
+# veya Python.org'dan indirip kur
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+```
+
+**Linux (CentOS/RHEL):**
+```bash
+sudo yum install python3 python3-pip
+```
+
+**Windows:**
+- Python.org'dan Python 3.8+ sürümünü indirip kurun
+- Kurulum sırasında "Add Python to PATH" seçeneğini işaretleyin
+
+#### Virtual Environment (venv) Oluşturma
+
+Virtual environment kullanmak önerilir. Proje bağımlılıklarını izole eder:
+
+```bash
+# data-generation dizinine git
 cd data-generation
 
-# Virtual environment oluştur (önerilir)
+# Virtual environment oluştur
 python3 -m venv .venv
-source .venv/bin/activate  # Linux/Mac
-# veya
-.venv\Scripts\activate  # Windows
 
-# Bağımlılıkları kur
+# Virtual environment'ı aktif et
+# Linux/Mac:
+source .venv/bin/activate
+
+# Windows:
+.venv\Scripts\activate
+
+# Aktif olduğunu kontrol et (prompt'ta (.venv) görünmeli)
+which python  # Linux/Mac
+where python  # Windows
+```
+
+#### Python Bağımlılıklarını Kur
+
+Virtual environment aktifken:
+
+```bash
+# pip'i güncelle (önerilir)
+pip install --upgrade pip
+
+# Proje bağımlılıklarını kur
 pip install psycopg faker
 ```
+
+#### Virtual Environment'ı Deaktif Etme
+
+İşiniz bittiğinde:
+
+```bash
+deactivate
+```
+
+#### Notlar
+
+- Virtual environment her yeni terminal açılışında tekrar aktif etmeniz gerekir
+- `.venv` dizini `.gitignore`'da olduğu için Git'e commit edilmez
+- Farklı projeler için farklı virtual environment'lar kullanabilirsiniz
 
 ### 3. Docker Servislerini Başlat
 
@@ -214,6 +285,11 @@ Order creation, payment processing gibi multi-step işlemlerde:
 - **Database Statistics**: ANALYZE komutu ile istatistik güncelleme, query optimizer için
 - **Lock Contention**: Row-level locking, table-level locking, deadlock detection
 
+### Spring Framework Features
+
+- **MapStruct**: Type-safe bean mapping, compile-time code generation, Entity-DTO dönüşümleri
+- **@Transactional**: Transaction yönetimi, propagation seviyeleri, isolation levels, rollback stratejileri
+
 ## Yardımcı Script'ler
 
 ### Veritabanını Temizle
@@ -269,7 +345,3 @@ Oluşturulan test verisi:
 ## Katkıda Bulunma
 
 Bu proje distributed systems ve database problemlerini öğrenmek ve denemek için tasarlanmıştır. Yeni pattern'ler, çözümler ve örnekler ekleyebilirsiniz.
-
-# istediginizi-deneyin
-# istediginizi-deneyin
-# istediginizi-deneyin

@@ -290,25 +290,29 @@ def generate_data():
             # 2. ACCOUNTS
             print("Generating accounts")
             for i in range(0, len(user_ids), BATCH_SIZE):
-                batch = [
-                    (
+                batch = []
+                for uid in user_ids[i:i + BATCH_SIZE]:
+                    # Unique account number oluştur (UUID'nin ilk 8 karakterini kullan)
+                    account_uuid = str(uuid.uuid4()).replace('-', '')
+                    account_number = f"ACC-{account_uuid[:12].upper()}"
+                    
+                    batch.append((
                         str(uuid.uuid4()),
                         uid,
                         round(random.uniform(0, 10_000), 2),
                         "ACTIVE",
-                        fake.bothify(text='ACC-########'),
+                        account_number,
                         "USD",
                         fake.date_time_between(start_date="-2y"),
                         fake.date_time_between(start_date="-1y")
-                    )
-                    for uid in user_ids[i:i + BATCH_SIZE]
-                ]
+                    ))
 
                 cur.executemany(
                     """
                     INSERT INTO accounts 
                     (account_id, user_id, balance, status, account_number, currency, created_at, updated_at)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (account_number) DO NOTHING
                     """,
                     batch
                 )
@@ -381,8 +385,13 @@ def generate_data():
             # 3. PRODUCTS
             print("Generating products")
             for _ in range(0, PRODUCT_COUNT, BATCH_SIZE):
-                batch = [
-                    (
+                batch = []
+                for _ in range(BATCH_SIZE):
+                    # Unique SKU oluştur
+                    sku_uuid = str(uuid.uuid4()).replace('-', '')
+                    sku = f"SKU-{sku_uuid[:8].upper()}-{sku_uuid[8:12].upper()}"
+                    
+                    batch.append((
                         str(uuid.uuid4()),
                         fake.catch_phrase(),
                         round(random.uniform(10, 2000), 2),
@@ -391,12 +400,10 @@ def generate_data():
                         random.choice(PRODUCT_CATEGORIES),
                         random.choice(BRANDS),
                         fake.image_url() if random.random() < 0.8 else None,
-                        fake.bothify(text='SKU-####-####'),
+                        sku,
                         fake.date_time_between(start_date="-1y"),
                         fake.date_time_between(start_date="-6m")
-                    )
-                    for _ in range(BATCH_SIZE)
-                ]
+                    ))
 
                 cur.executemany(
                     """
@@ -404,6 +411,7 @@ def generate_data():
                     (product_id, name, price, stock_quantity, description, category, brand, 
                      image_url, sku, created_at, updated_at)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (sku) DO NOTHING
                     """,
                     batch
                 )
@@ -562,19 +570,22 @@ def generate_data():
             for i in range(0, len(order_ids), BATCH_SIZE):
                 orders_batch = order_ids[i:i + BATCH_SIZE]
 
-                payments = [
-                    (
+                payments = []
+                for oid in orders_batch:
+                    # Unique transaction ID oluştur
+                    txn_uuid = str(uuid.uuid4()).replace('-', '')
+                    transaction_id = f"TXN-{txn_uuid[:12].upper()}"
+                    
+                    payments.append((
                         str(uuid.uuid4()),
                         oid,
                         random.choice(PAYMENT_METHODS),
                         round(random.uniform(50, 5000), 2),
                         fake.date_time_between(start_date="-2y"),
                         random.choices(PAYMENT_STATUSES, weights=PAYMENT_STATUS_WEIGHTS, k=1)[0],
-                        fake.bothify(text='TXN-########'),
+                        transaction_id,
                         fake.text(max_nb_chars=100) if random.random() < 0.1 else None
-                    )
-                    for oid in orders_batch
-                ]
+                    ))
 
                 shipments = [
                     (
@@ -598,6 +609,7 @@ def generate_data():
                         (payment_id, order_id, payment_method, amount, payment_date, 
                          status, transaction_id, failure_reason)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (transaction_id) DO NOTHING
                     """,
                     payments
                 )
