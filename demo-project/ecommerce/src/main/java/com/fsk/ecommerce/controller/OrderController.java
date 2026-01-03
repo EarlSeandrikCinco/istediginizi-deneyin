@@ -18,7 +18,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @PostMapping("/sync")
+    @PostMapping("/create-order")
     public ResponseEntity<UUID> createOrderSync(@RequestBody OrderRequestDTO request) {
         return ResponseEntity.ok(orderService.createOrderSync(request));
     }

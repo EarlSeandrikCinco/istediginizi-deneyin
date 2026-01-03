@@ -33,51 +33,6 @@ public class OrderService {
 
     @Transactional
     public UUID createOrderSync(OrderRequestDTO request) {
-        log.debug("Creating order sync for user: {}", request.getUserId());
-
-        User user = userRepository.findById(request.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-
-        Order order = new Order();
-        order.setUser(user);
-        order.setOrderDate(LocalDateTime.now());
-        order.setStatus(OrderStatus.PENDING);
-        order.setTotalAmount(BigDecimal.ZERO);
-
-        order = orderRepository.save(order);
-
-        BigDecimal totalAmount = BigDecimal.ZERO;
-        List<OrderItem> orderItems = new ArrayList<>();
-
-        for (OrderRequestDTO.OrderItemRequestDTO itemRequest : request.getItems()) {
-            Product product = productRepository.findById(itemRequest.getProductId())
-                    .orElseThrow(() -> new RuntimeException("Product not found: " + itemRequest.getProductId()));
-
-            if (product.getStockQuantity() < itemRequest.getQuantity()) {
-                throw new RuntimeException("Insufficient stock for product: " + product.getName());
-            }
-
-            // Simulate some processing time to make the bottleneck more apparent
-            try { Thread.sleep(50); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-
-            product.setStockQuantity(product.getStockQuantity() - itemRequest.getQuantity());
-            productRepository.save(product);
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-            orderItem.setProduct(product);
-            orderItem.setQuantity(itemRequest.getQuantity());
-            orderItem.setUnitPrice(product.getPrice());
-            orderItem.setSubtotal(product.getPrice().multiply(BigDecimal.valueOf(itemRequest.getQuantity())));
-            
-            orderItems.add(orderItem);
-            totalAmount = totalAmount.add(orderItem.getSubtotal());
-        }
-
-        orderItemRepository.saveAll(orderItems);
-        order.setTotalAmount(totalAmount);
-        orderRepository.save(order);
-
-        return order.getId();
+        return null;
     }
 }
